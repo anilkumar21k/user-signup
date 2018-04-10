@@ -39,12 +39,14 @@ def signup_validation():
     if vpwd != pwd:
         vpwd_error = "Your passwords do not match"
 
-    if ((em.count('@')==0) or (em.count('.')==0) or (em.count(' ')>=1)):
+    if em =='':
+        em=''
+    elif ((em.count('@')==0) or (em.count('.')==0)):
         em_error = 'Please enter a valid Email ID'
     elif (len(em)>20 or len(em)<3):
         em_error = 'Your Email ID is too long'
     
-    if not (uname_error) and (pwd_error) and (vpwd_error) and (em_error):
+    if not uname_error and not pwd_error and not vpwd_error and not em_error:
         #user_name = uname
         #return redirect('/valid-signup?user_name={0}'.format(user_name))
         return render_template('welcome.html', uname=uname)
